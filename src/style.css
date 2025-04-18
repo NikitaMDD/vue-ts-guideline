@@ -1,0 +1,25 @@
+.arrows-for-tags {
+    color: #d4ab55;
+}
+.component {
+    color: #2eb9a2;
+}
+.variables {
+    color: #c77dbb;
+}
+.classes {
+    color: #6aab73;
+}
+.code-container{
+    background: #1e1f22;
+    color: #bcbec4;
+}
+pre  code {
+    padding: 0;
+}
+code {
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
