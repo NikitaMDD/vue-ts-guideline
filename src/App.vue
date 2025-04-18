@@ -10,6 +10,7 @@
              @update:modelValue="updateModelNameMail" @update:isError="isErrorMail = false"/>
       <div class="service-main_button" style="margin-bottom: 50px" @click="sendRequest">Отправить</div>
       <DropdownMenu
+          :label="'Выпадающий список'"
           :selected-item="selectedItem"
           :items="dropdownItems"
           :is-open="isDropdownOpen"

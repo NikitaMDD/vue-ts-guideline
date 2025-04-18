@@ -1,5 +1,6 @@
 <template>
   <div class="dropdown">
+    <div class="dropdown__name">{{ label }}</div>
     <div
         :style="selectedItem ? 'padding: 0 15px; height: 39px; justify-content: space-between' : 'padding: 0 15px; height: 39px; justify-content: end;'"
         :class="isOpen ? 'dropdown-menu dropdown-menu_active' : 'dropdown-menu'"
@@ -35,6 +36,7 @@
 import { defineProps, defineEmits, ref, watch } from 'vue';
 
 const props = defineProps<{
+  label: string;
   selectedItem: string;
   items: string[];
   isOpen: boolean;
@@ -64,6 +66,14 @@ watch(() => props.items.length, (newLength) => {
 <style scoped>
 .dropdown {
   position: relative;
+}
+
+.dropdown__name {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 8px;
+  line-height: 17px;
+  color: #2B3033;
 }
 
 .dropdown-menu {
