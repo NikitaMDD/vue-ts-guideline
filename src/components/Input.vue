@@ -1,11 +1,11 @@
 <template>
   <div class="field req">
-    <label for="name_field">{{ label }}</label>
+    <label :for="label">{{ label }}</label>
     <input
-        id="name_field"
+        :id="label"
         type="text"
         v-model="localModelName"
-        name="name_field"
+        :name="label"
         class="service-form__input input-reset"
         @input="handleInput"
         @focus="handleFocus"
