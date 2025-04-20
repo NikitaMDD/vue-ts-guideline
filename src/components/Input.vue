@@ -66,6 +66,24 @@ const formatPhoneNumber = () => {
   }
 };
 
+const formatDate = () => {
+  const digits = localModelName.value.replace(/\D/g, "").slice(0, 8);
+
+  if (!digits.length) {
+    localModelName.value = '';
+    return;
+  }
+
+  let formatted = '';
+
+  for (let i = 0; i < digits.length; i++) {
+    if (i === 2 || i === 4) formatted += '.';
+    formatted += digits[i];
+  }
+
+  localModelName.value = formatted;
+};
+
 const handleFocus = () => {
   isFocused.value = true;
   if (localModelName.value === masks[props.isType]) {
@@ -79,12 +97,16 @@ const handleBlur = () => {
     localModelName.value = masks[props.isType];
   } else if (props.isType === InputType.Phone) {
     formatPhoneNumber();
+  } else if (props.isType === InputType.Date) {
+    formatDate();
   }
 };
 
 const handleInput = () => {
   if (props.isType === InputType.Phone) {
     formatPhoneNumber();
+  } else if (props.isType === InputType.Date) {
+    formatDate();
   }
   updateModelName();
 
