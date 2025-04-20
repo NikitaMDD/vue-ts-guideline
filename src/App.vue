@@ -16,6 +16,7 @@
           :is-open="isDropdownOpen"
           @update:selectedItem="selectedItem = $event"
           @toggleDropdown="isDropdownOpen = !isDropdownOpen"/>
+      <FileUploader :files-name="'файлы'" :files-array="filesArray"/>
     </div>
   </div>
 </template>
@@ -28,6 +29,11 @@ import { watch } from "vue"; //, ref
 import { InputType } from "./enums/InputType.ts";
 import { validateRequired, validateEmail, validatePhone } from './use/validators.ts';
 import useDropdown from "./use/dropdown.ts";
+import FileUploader from "./components/FileUploader.vue";
+import useFiles from "./use/files.ts";
+
+// Для массива файлов
+const {arrayOfFiles: filesArray} = useFiles();
 
 // Для полей ввода
 const { isError, modelInput: modelName, validate: validateNameFn } = useInput(validateRequired, false);
