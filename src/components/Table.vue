@@ -51,7 +51,7 @@ function openModal(elem:TableData) {
   props.openModal(elem);
 }
 
-const mainElements: object[] = [
+const mainElements: TableData[] = [
   {
     name: "Table",
     data: "21.04.2025",
