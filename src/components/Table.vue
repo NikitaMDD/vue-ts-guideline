@@ -38,10 +38,10 @@ const props = defineProps<{
   headerElements: Array<string>,
   modal: string,
   // mainElements: Array<object>,
-  openModal: (data: TableData) => void,
+  openModal: (data:TableData) => void,
 }>();
 
-function openModal(elem:object) {
+function openModal(elem:TableData) {
   props.openModal(elem);
 }
 
