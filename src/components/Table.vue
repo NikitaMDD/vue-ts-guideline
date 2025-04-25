@@ -38,7 +38,7 @@ const props = defineProps<{
   headerElements: Array<string>,
   modal: string,
   // mainElements: Array<object>,
-  openModal: (data: object) => void,
+  openModal: (data: TableData) => void,
 }>();
 
 function openModal(elem:object) {
