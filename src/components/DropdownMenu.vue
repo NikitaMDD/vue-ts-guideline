@@ -102,6 +102,7 @@ watch(() => props.items.length, (newLength) => {
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  z-index: 1;
 }
 
 .dropdown__item {
