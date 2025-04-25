@@ -10,32 +10,27 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { defineProps, onMounted } from "vue";
 
-export default {
-  setup() {
-    const props = defineProps({
-      type: String,
-    });
-
-    onMounted(() => {
-      document.querySelectorAll(".js-calendar-picker").forEach(input => {
-        // Кастомный календарь через класс js-calendar-picker
-        new Picker(input, {
-          format: 'DD.MM.YYYY',
-          text: {
-            title: 'Выберите дату',
-          },
-        });
-      });
-    });
-
-    return {
-      props,
-    };
+const props = defineProps({
+  type: {
+    type: String,
+    required: true,
   },
-};
+});
+
+onMounted(() => {
+  document.querySelectorAll(".js-calendar-picker").forEach(input => {
+    // Кастомный календарь через класс js-calendar-picker
+    new Picker(input, {
+      format: 'DD.MM.YYYY',
+      text: {
+        title: 'Выберите дату',
+      },
+    });
+  });
+});
 </script>
 
 <style scoped>
