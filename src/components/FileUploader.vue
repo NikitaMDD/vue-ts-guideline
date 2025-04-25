@@ -25,7 +25,8 @@
                 d="M0 0L1.6761049 0L1.6761049 20.951311L0 20.951311L0 0Z"/>
         </svg>
       </div>
-      <div @click="selectedFileName ? addFile() : ''" :class="selectedFileName ? 'service-main_button' : 'service-main_button service-main_button_disabled'">
+      <div @click="selectedFileName ? addFile() : ''"
+           :class="selectedFileName ? 'service-main_button' : 'service-main_button service-main_button_disabled'">
         Загрузить
       </div>
     </div>
@@ -154,11 +155,17 @@ function addFile() {
   removeFile();
 }
 
-function removeFileFromTable(indexOfFile:number) {
+function removeFileFromTable(indexOfFile: number) {
   props.filesArray.splice(indexOfFile, 1);
 }
 
-const generateTemporaryLink = (fileName: string):string => {
+// Доделать момент с файлом и переделать под нормальные временнные ссылки
+
+// const generateTemporaryLink = (fileName: string): string => {
+//   return URL.createObjectURL(fileName);
+// }
+
+const generateTemporaryLink = (fileName: string): string => {
   return `http://testfile.org/${fileName}`;
 }
 
