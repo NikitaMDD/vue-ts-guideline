@@ -34,6 +34,12 @@
 <script setup lang="ts">
 import {defineProps} from 'vue';
 
+interface TableData {
+  name: string;
+  data: string;
+  value: string;
+}
+
 const props = defineProps<{
   headerElements: Array<string>,
   modal: string,
