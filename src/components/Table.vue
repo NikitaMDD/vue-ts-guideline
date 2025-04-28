@@ -1,13 +1,13 @@
 <template>
-  <div class="table-vue" v-if="mainElements.length <= 3">
+  <div class="table-vue" v-if="props.mainElements.length <= 3">
     <div class="table-vue__header">
       <div class="table-vue__header-item" v-for="elem in headerElements" :key="elem">
         {{ elem }}
       </div>
     </div>
     <div class="table-vue__main">
-      <div class="table-vue__row" v-for="elem in mainElements" data-toggle="modal" :data-target="modal" @click="openModal(elem)">
-        <div class="table-vue__main-item" v-for="data in elem" :key="data">
+      <div class="table-vue__row" v-for="elem in props.mainElements" data-toggle="modal" :data-target="modal" @click="openModal(elem)">
+        <div class="table-vue__main-item" v-for="(data, key) in elem" :key="key">
           {{ data }}
         </div>
         <div>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div v-else class="">
-    <div class="" v-for="(elem, index) in mainElements">
+    <div class="" v-for="(elem, index) in props.mainElements">
       <div class="title">
         {{ headerElements[index] }}
       </div>
@@ -33,42 +33,19 @@
 
 <script setup lang="ts">
 import {defineProps} from 'vue';
+import type {TableData} from "../interfaces/InterfacesTableMainItems.ts";
 
-interface TableData {
-  name: string;
-  data: string;
-  value: string;
-}
 
 const props = defineProps<{
   headerElements: Array<string>,
   modal: string,
-  // mainElements: Array<object>,
-  openModal: (data:TableData) => void,
+  mainElements: Array<TableData>,
+  openModal: (data: TableData) => void,
 }>();
 
-function openModal(elem:TableData) {
+function openModal(elem: TableData) {
   props.openModal(elem);
 }
-
-const mainElements: TableData[] = [
-  {
-    name: "Table",
-    data: "21.04.2025",
-    value: "value test",
-  },
-  {
-    name: "Table 2",
-    data: "21.04.2025",
-    value: "value test",
-  },
-  {
-    name: "Table 3",
-    data: "21.04.2025",
-    value: "value test",
-  },
-
-];
 
 </script>
 
@@ -77,14 +54,13 @@ const mainElements: TableData[] = [
   border: 1px solid #C7C7C7;
   border-radius: 8px;
   background: #F3F3F3;
-  padding: 20px 19px 20px 20px;
 }
 
 .table-vue__header {
   display: flex;
   justify-content: space-between;
   width: 99%;
-  margin: 0 0 15px;
+  padding: 17px 19px;
   font-size: 16px;
   font-weight: 600;
 }
@@ -93,17 +69,24 @@ const mainElements: TableData[] = [
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #DFDFE0;
-  padding: 17px 0;
+  padding: 17px 19px;
   font-size: 14px;
   font-weight: 400;
+  transition: background 0.3s ease-in-out;
 }
 
 .table-vue__row:last-child {
-  padding: 17px 0 0;
+  padding: 17px 19px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .table-vue__header-item, .table-vue__main-item {
   flex: 1;
+}
+
+.table-vue__row:hover {
+  background: #eaeaeb;
 }
 
 </style>
