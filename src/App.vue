@@ -17,7 +17,12 @@
           @update:selectedItem="selectedItem = $event"
           @toggleDropdown="isDropdownOpen = !isDropdownOpen"/>
       <FileUploader :files-name="'файлы'" :files-array="filesArray"/>
-      <Table :modal="'#testModal'" style="margin: 30px 0 0" :header-elements="tryHeaderElements" :open-modal="openModal"/>
+      <Table
+          :modal="'#testModal'"
+          style="margin: 30px 0 0"
+          :header-elements="tryHeaderElements"
+          :main-elements="mainElements"
+          :open-modal="openModal"/>
       <PickerInput :type="'date'"/>
     </div>
   </div>
@@ -39,19 +44,23 @@
             </div>
             <div class="field req">
               <label for="NAME">Имя</label>
-              <input type="text" name="NAME" id="NAME" class="service-form__input" placeholder="" inputmode="numeric" v-model="recordName">
+              <input type="text" name="NAME" id="NAME" class="service-form__input" placeholder="" inputmode="numeric"
+                     v-model="recordName">
               <div class="field__error">Пожалуйста, заполните поле.</div>
             </div>
             <div class="field req">
               <label for="VALUE">Значение</label>
-              <input type="text" name="VALUE" id="VALUE" class="service-form__input" placeholder="" inputmode="numeric" v-model="recordValue">
+              <input type="text" name="VALUE" id="VALUE" class="service-form__input" placeholder="" inputmode="numeric"
+                     v-model="recordValue">
               <div class="field__error">Пожалуйста, заполните поле.</div>
             </div>
           </form>
           <div class="service-main_button" @click="saveChanges">
             Сохранить изменения
           </div>
-          <div class="service-form__delete_link" data-el_id="51" data-toggle="modal" data-dismiss="modal" data-target="#delElement">Удалить запись</div>
+          <div class="service-form__delete_link" data-el_id="51" data-toggle="modal" data-dismiss="modal"
+               data-target="#delElement">Удалить запись
+          </div>
         </div>
       </div>
     </div>
@@ -63,31 +72,32 @@ import Input from "./components/Input.vue";
 import DropdownMenu from "./components/DropdownMenu.vue";
 import Table from "./components/Table.vue";
 import useInput from "./use/input";
-import { watch, ref } from "vue";
-import { InputType } from "./enums/InputType.ts";
-import { validateRequired, validateEmail, validatePhone } from './use/validators.ts';
+import {watch, ref} from "vue";
+import {InputType} from "./enums/InputType.ts";
+import {validateRequired, validateEmail, validatePhone} from './use/validators.ts';
 import useDropdown from "./use/dropdown.ts";
 import FileUploader from "./components/FileUploader.vue";
 import useFiles from "./use/files.ts";
 import PickerInput from "./components/PickerInput.vue";
+import type {TableData} from "./interfaces/InterfacesTableMainItems.ts";
 
 // Для массива файлов
 const {arrayOfFiles: filesArray} = useFiles();
 
 // Для полей ввода
-const { isError, modelInput: modelName, validate: validateNameFn } = useInput(validateRequired, false);
-const { isError: isErrorPhone, modelInput: modelNamePhone, validate: validatePhoneFn } = useInput(validatePhone, true);
-const { isError: isErrorMail, modelInput: modelNameMail, validate: validateEmailFn } = useInput(validateEmail, true);
+const {isError, modelInput: modelName, validate: validateNameFn} = useInput(validateRequired, false);
+const {isError: isErrorPhone, modelInput: modelNamePhone, validate: validatePhoneFn} = useInput(validatePhone, true);
+const {isError: isErrorMail, modelInput: modelNameMail, validate: validateEmailFn} = useInput(validateEmail, true);
 
-const tryHeaderElements:string[] = [
-    "Имя",
-    "Дата",
-    "Значение",
-    // "Четвертый заголовок",
+const tryHeaderElements: string[] = [
+  "Имя",
+  "Дата",
+  "Значение",
+  // "Четвертый заголовок",
 ]
 
 // Данные для выпадающего списка
-const { selectedItem, isDropdownOpen } = useDropdown();
+const {selectedItem, isDropdownOpen} = useDropdown();
 const dropdownItems: string[] = [
   'Элемент списка 1',
   'Элемент списка 2',
@@ -98,19 +108,32 @@ const dropdownItems: string[] = [
   // 'Элемент списка 7',
 ];
 
+// Пример данных с использованием индексной сигнатуры
+const mainElements: TableData[] = [
+  {
+    name: "Table",
+    data: "21.04.2025",
+    value: "value test",
+  },
+  {
+    name: "Table 2",
+    data: "21.04.2025",
+    value: "value test",
+  },
+  {
+    name: "Table 3",
+    data: "21.04.2025",
+    value: "value test",
+  },
+];
+
 // Функционал
 
 const recordDate = ref('');
 const recordName = ref('');
 const recordValue = ref('');
 
-interface TableData {
-  name: string;
-  data: string;
-  value: string;
-}
-
-function openModal(data:TableData) {
+function openModal(data: TableData) {
 
   console.log(data);
 
