@@ -16,7 +16,7 @@
     </div>
     <div
         class="dropdown__list"
-        :class="{ 'dropdown__list--open': isOpen, 'dropdown__list--scroll': hasScroll }"
+        :class="{ 'dropdown__list_open': isOpen, 'dropdown__list_scroll': hasScroll }"
         :style="isOpen ? { maxHeight: '200px', opacity: 1, overflow: items.length > 5 ? 'auto' : 'hidden' } : { maxHeight: '0', opacity: 0, overflow: 'hidden' }"
     >
       <div
