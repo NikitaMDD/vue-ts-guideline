@@ -23,7 +23,8 @@
           :header-elements="tryHeaderElements"
           :main-elements="mainElements"
           :open-modal="openModal"/>
-      <PickerInput :type="'date'"/>
+      <PickerInput style="margin: 24px 0 0" :type="'date'"/>
+      <PickerInput :type="'time'"/>
     </div>
   </div>
   <div class="modal fade newDesignModal cur_modal" id="testModal" aria-hidden="true">
